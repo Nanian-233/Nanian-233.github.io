@@ -5112,14 +5112,14 @@ mjx-container[display],
 }
 @media screen and (max-width: 800px) {
   #web_bg {
-    background: var(--mobileday-bg);
+    background: url(https://tuchuang.voooe.cn/images/2024/03/06/1693430940584.jpg);
     background-attachment: local !important;
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
   }
   [data-theme="dark"] #web_bg {
-    background: var(--mobilenight-bg);
+    background: url(https://tuchuang.voooe.cn/images/2024/03/06/1693430940584.jpg);
     background-attachment: local !important;
     background-position: center !important;
     background-size: cover !important;
@@ -6964,7 +6964,7 @@ div#archive {
 
 /* 夜间模式配色，具体比照上方默认模式class */
 [data-theme="dark"] .tk-content {
-  background: #000;
+  background: #333;
   color: #fff;
 }
 [data-theme="dark"] .tk-content a {
