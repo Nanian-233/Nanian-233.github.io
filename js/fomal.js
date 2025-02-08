@@ -2290,21 +2290,26 @@ function setUniverse() {
 }
 
 // 雪花开关
-if (localStorage.getItem("snow") == undefined) {
-  localStorage.setItem("snow", "block");  // 默认设置为开启
+// 设置默认雪花状态为开启
+if (localStorage.getItem("snow") === null) {  // 改为检查 null 而不是 undefined
+  localStorage.setItem("snow", "block");
 }
-document.getElementById("snow").style.display = localStorage.getItem("snow"); // 根据localStorage值设置雪花显示状态
+
+// 初始化雪花显示状态
+document.getElementById("snow").style.display = localStorage.getItem("snow");
+
+// 初始化复选框状态
+document.getElementById("snowSet").checked = localStorage.getItem("snow") === "block";
 
 function setSnow() {
   if (document.getElementById("snowSet").checked) {
     document.getElementById("snow").style.display = "block";
-    localStorage.setItem("snow", "block");  // 开启雪花
+    localStorage.setItem("snow", "block");
   } else {
     document.getElementById("snow").style.display = "none";
-    localStorage.setItem("snow", "none");  // 关闭雪花
+    localStorage.setItem("snow", "none");
   }
 }
-
 
 
 // 帧率监测开关
