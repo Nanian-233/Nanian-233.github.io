@@ -2291,7 +2291,7 @@ function setUniverse() {
 
 // 雪花开关
 if (localStorage.getItem("snow") == undefined) {
-  localStorage.setItem("snow", "none");
+  localStorage.setItem("snow", "block");
 }
 document.getElementById("snow").style.display = "block";
 function setSnow() {
@@ -2302,7 +2302,9 @@ function setSnow() {
     document.getElementById("snow").style.display = "none";
     localStorage.setItem("snow", "none");
   }
-} 
+}
+
+
 
 
 // 帧率监测开关
