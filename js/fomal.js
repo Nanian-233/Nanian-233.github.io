@@ -34,7 +34,7 @@ function percent() {
 
 //----------------------------------------------------------------
 
-/* 导航栏显示标题 start*/
+/* 导航栏显示标题 start */
 
 document.addEventListener('pjax:complete', tonav);
 document.addEventListener('DOMContentLoaded', tonav);
@@ -54,7 +54,7 @@ function tonav() {
     position = scroll;
   });
   //修复没有弄右键菜单的童鞋无法回顶部的问题
-  document.getElementById("page-name").innerText = document.title.split(" | Nanian233🍊's Blog")[0];
+  document.getElementById("page-name").innerText = document.title.split(" | Fomalhaut🥝")[0];
 }
 
 function scrollToTop() {
@@ -63,7 +63,7 @@ function scrollToTop() {
   btf.scrollToDest(0, 500);
 }
 
- /* 导航栏显示标题 end */
+/* 导航栏显示标题 end */
 
 //----------------------------------------------------------------
 
@@ -73,7 +73,7 @@ $.ajax({
   type: 'get',
   url: 'https://apis.map.qq.com/ws/location/v1/ip',
   data: {
-    key: 'TC2BZ-CAFW5-32UI4-IO7UI-UGL4T-NZF23',  // 这里要写你的KEY!!!
+    key: '',  // 这里要写你的KEY!!!
     output: 'jsonp',
   },
   dataType: 'jsonp',
@@ -99,7 +99,7 @@ function getDistance(e1, n1, e2, n2) {
 
 function showWelcome() {
 
-  let dist = getDistance(111.830789,21.886359, ipLoacation.result.location.lng, ipLoacation.result.location.lat); //这里换成自己的经纬度
+  let dist = getDistance(113.34499552, 23.15537143, ipLoacation.result.location.lng, ipLoacation.result.location.lat); //这里换成自己的经纬度
   let pos = ipLoacation.result.ad_info.nation;
   let ip;
   let posdesc;
@@ -638,16 +638,16 @@ function randomPost() {
 
 //----------------------------------------------------------------
 
-/**  小猫咪 start 
+/* 小猫咪 start */
 if (document.body.clientWidth > 992) {
   function getBasicInfo() {
-     //窗口高度 
+    /* 窗口高度 */
     var ViewH = $(window).height();
-    // document高度 
+    /* document高度 */
     var DocH = $("body")[0].scrollHeight;
-    // 滚动的高度 //
+    /* 滚动的高度 */
     var ScrollTop = $(window).scrollTop();
-    // 可滚动的高度 
+    /* 可滚动的高度 */
     var S_V = DocH - ViewH;
     var Band_H = ScrollTop / (DocH - ViewH) * 100;
     return {
@@ -766,7 +766,7 @@ if (document.body.clientWidth > 992) {
     }
     );
     //自定义（去掉以下注释，并注释掉其他的查看效果）
-    /* 
+    /*
     $("#myscoll").nekoScroll({
         nekoname:'neko1', //nekoname，相当于id
         nekoImg:'img/猫咪.png', //neko的背景图片
@@ -783,14 +783,14 @@ if (document.body.clientWidth > 992) {
         during:1200, //从顶部到底部滑动的时长
     });
     */
-  /*})
-}*/
+  })
+}
 
- /** 小猫咪 end **/
+/* 小猫咪 end */
 
 //----------------------------------------------------------------
 
-/* 右键菜单 start 
+/* 右键菜单 start */
 function setMask() {
   //设置遮罩
   if (document.getElementsByClassName("rmMask")[0] != undefined)
@@ -1113,38 +1113,27 @@ function changeMouseMode() {
 var now1 = new Date();
 
 function createtime1() {
-  var grt = new Date("2024/03/05 20:00:00"); //此处修改你的建站时间或者网站上线时间
+  var grt = new Date("08/09/2022 00:00:00"); //此处修改你的建站时间或者网站上线时间
   now1.setTime(now1.getTime() + 250);
   var days = (now1 - grt) / 1000 / 60 / 60 / 24;
   var dnum = Math.floor(days);
 
   var ascll = [
-    `欢迎来到Nanian233🍊の小家!`,
-    `Never give up!💪`,
+    `欢迎来到Fomalhaut🥝の小家!`,
+    `Future is now 🍭🍭🍭`,
     `
-                                                                                                                                                     
-    NNNNNNNN        NNNNNNNN                                      iiii                                       222222222222222     333333333333333    333333333333333   
-    N:::::::N       N::::::N                                     i::::i                                     2:::::::::::::::22  3:::::::::::::::33 3:::::::::::::::33 
-    N::::::::N      N::::::N                                      iiii                                      2::::::222222:::::2 3::::::33333::::::33::::::33333::::::3
-    N:::::::::N     N::::::N                                                                                2222222     2:::::2 3333333     3:::::33333333     3:::::3
-    N::::::::::N    N::::::N  aaaaaaaaaaaaa   nnnn  nnnnnnnn    iiiiiii   aaaaaaaaaaaaa   nnnn  nnnnnnnn                2:::::2             3:::::3            3:::::3
-    N:::::::::::N   N::::::N  a::::::::::::a  n:::nn::::::::nn  i:::::i   a::::::::::::a  n:::nn::::::::nn              2:::::2             3:::::3            3:::::3
-    N:::::::N::::N  N::::::N  aaaaaaaaa:::::a n::::::::::::::nn  i::::i   aaaaaaaaa:::::a n::::::::::::::nn          2222::::2      33333333:::::3     33333333:::::3 
-    N::::::N N::::N N::::::N           a::::a nn:::::::::::::::n i::::i            a::::a nn:::::::::::::::n    22222::::::22       3:::::::::::3      3:::::::::::3  
-    N::::::N  N::::N:::::::N    aaaaaaa:::::a   n:::::nnnn:::::n i::::i     aaaaaaa:::::a   n:::::nnnn:::::n  22::::::::222         33333333:::::3     33333333:::::3 
-    N::::::N   N:::::::::::N  aa::::::::::::a   n::::n    n::::n i::::i   aa::::::::::::a   n::::n    n::::n 2:::::22222                    3:::::3            3:::::3
-    N::::::N    N::::::::::N a::::aaaa::::::a   n::::n    n::::n i::::i  a::::aaaa::::::a   n::::n    n::::n2:::::2                         3:::::3            3:::::3
-    N::::::N     N:::::::::Na::::a    a:::::a   n::::n    n::::n i::::i a::::a    a:::::a   n::::n    n::::n2:::::2                         3:::::3            3:::::3
-    N::::::N      N::::::::Na::::a    a:::::a   n::::n    n::::ni::::::ia::::a    a:::::a   n::::n    n::::n2:::::2       2222223333333     3:::::33333333     3:::::3
-    N::::::N       N:::::::Na:::::aaaa::::::a   n::::n    n::::ni::::::ia:::::aaaa::::::a   n::::n    n::::n2::::::2222222:::::23::::::33333::::::33::::::33333::::::3
-    N::::::N        N::::::N a::::::::::aa:::a  n::::n    n::::ni::::::i a::::::::::aa:::a  n::::n    n::::n2::::::::::::::::::23:::::::::::::::33 3:::::::::::::::33 
-    NNNNNNNN         NNNNNNN  aaaaaaaaaa  aaaa  nnnnnn    nnnnnniiiiiiii  aaaaaaaaaa  aaaa  nnnnnn    nnnnnn22222222222222222222 333333333333333    333333333333333   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
-    `,
-    "小站已经存活",
+        
+███████  ██████  ███    ███  █████  ██      ██   ██  █████  ██    ██ ████████ 
+██      ██    ██ ████  ████ ██   ██ ██      ██   ██ ██   ██ ██    ██    ██    
+█████   ██    ██ ██ ████ ██ ███████ ██      ███████ ███████ ██    ██    ██    
+██      ██    ██ ██  ██  ██ ██   ██ ██      ██   ██ ██   ██ ██    ██    ██    
+██       ██████  ██      ██ ██   ██ ███████ ██   ██ ██   ██  ██████     ██   
+                                              
+`,
+    "小站已经苟活",
     dnum,
     "天啦!",
-    "©2024 By Nanian233",
+    "©2022 By Fomalhaut",
   ];
 
   setTimeout(
@@ -1183,7 +1172,7 @@ function createtime2() {
   setTimeout(
     console.warn.bind(
       console,
-      "%c ⚡ Powered by Nanian233🍊 %c 你正在访问Nanian233🍊の小家",
+      "%c ⚡ Powered by Fomalhaut🥝 %c 你正在访问Fomalhaut🥝の小家",
       "color:white; background-color:#f0ad4e",
       ""
     )
@@ -1205,28 +1194,84 @@ console.warn = function () { };
 
 //----------------------------------------------------------------
 
-/* 夜间模式切换 start */
+/* 夜间模式切换动画 start */
 function switchNightMode() {
-  const body = document.querySelector('body');
-  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-
+  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"><div id="sun"></div><div id="moon"></div></div></div>'),
+    setTimeout(function () {
+      document.querySelector('body').classList.contains('DarkMode') ? (document.querySelector('body').classList.remove('DarkMode'), localStorage.setItem('isDark', '0'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')) : (document.querySelector('body').classList.add('DarkMode'), localStorage.setItem('isDark', '1'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')),
+        setTimeout(function () {
+          document.getElementsByClassName('Cuteen_DarkSky')[0].style.transition = 'opacity 3s';
+          document.getElementsByClassName('Cuteen_DarkSky')[0].style.opacity = '0';
+          setTimeout(function () {
+            document.getElementsByClassName('Cuteen_DarkSky')[0].remove();
+          }, 1e3);
+        }, 2e3)
+    })
+  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
   if (nowMode === 'light') {
-    activateDarkMode();
-    saveToLocal.set('theme', 'dark', 2);
-    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun');
+    // 先设置太阳月亮透明度
+    document.getElementById("sun").style.opacity = "1";
+    document.getElementById("moon").style.opacity = "0";
+    setTimeout(function () {
+      document.getElementById("sun").style.opacity = "0";
+      document.getElementById("moon").style.opacity = "1";
+    }, 1000);
+
+    activateDarkMode()
+    saveToLocal.set('theme', 'dark', 2)
+    // GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
+    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')
+    // 延时弹窗提醒
+    setTimeout(() => {
+      new Vue({
+        data: function () {
+          this.$notify({
+            title: "关灯啦🌙",
+            message: "当前已成功切换至夜间模式！",
+            position: 'top-left',
+            offset: 50,
+            showClose: true,
+            type: "success",
+            duration: 5000
+          });
+        }
+      })
+    }, 2000)
   } else {
-    activateLightMode();
-    saveToLocal.set('theme', 'light', 2);
-    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon');
+    // 先设置太阳月亮透明度
+    document.getElementById("sun").style.opacity = "0";
+    document.getElementById("moon").style.opacity = "1";
+    setTimeout(function () {
+      document.getElementById("sun").style.opacity = "1";
+      document.getElementById("moon").style.opacity = "0";
+    }, 1000);
+
+    activateLightMode()
+    saveToLocal.set('theme', 'light', 2)
+    document.querySelector('body').classList.add('DarkMode'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')
+    setTimeout(() => {
+      new Vue({
+        data: function () {
+          this.$notify({
+            title: "开灯啦🌞",
+            message: "当前已成功切换至白天模式！",
+            position: 'top-left',
+            offset: 50,
+            showClose: true,
+            type: "success",
+            duration: 5000
+          });
+        }
+      })
+    }, 2000)
   }
-
   // handle some cases
-  typeof utterancesTheme === 'function' && utterancesTheme();
-  typeof FB === 'object' && window.loadFBComment();
-  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200);
+  typeof utterancesTheme === 'function' && utterancesTheme()
+  typeof FB === 'object' && window.loadFBComment()
+  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)
 }
-/* 夜间模式切换 end */
 
+/* 夜间模式切换动画 end */
 
 //----------------------------------------------------------------
 
@@ -1237,8 +1282,8 @@ function share_() {
   try {
     // 截取标题
     var title = document.title;
-    var subTitle = title.endsWith("| Nanian233🍊") ? title.substring(0, title.length - 14) : title;
-    navigator.clipboard.writeText('Nanian233🍊的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n欢迎来访！🍭🍭🍭');
+    var subTitle = title.endsWith("| Fomalhaut🥝") ? title.substring(0, title.length - 14) : title;
+    navigator.clipboard.writeText('Fomalhaut🥝的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n欢迎来访！🍭🍭🍭');
     new Vue({
       data: function () {
         this.$notify({
@@ -1269,7 +1314,7 @@ function share() {
 
 //----------------------------------------------------------------
 
-/* 恶搞标题 start 
+/* 恶搞标题 start */
 //动态标题
 var OriginTitile = document.title;
 var titleTime;
@@ -2740,26 +2785,27 @@ var now = new Date();
 function createtime() {
   // 当前时间
   now.setTime(now.getTime() + 1000);
-  var start = new Date("1977/09/05 12:56:00"); // 旅行者1号开始计算的时间
+  var start = new Date("08/01/2022 00:00:00"); // 旅行者1号开始计算的时间
   var dis = Math.trunc(23400000000 + ((now - start) / 1000) * 17); // 距离=秒数*速度 记住转换毫秒
   var unit = (dis / 149600000).toFixed(6);  // 天文单位
   // 网站诞生时间
-  var grt = new Date("2024/03/05 20:00:00");
+  var grt = new Date("08/09/2022 00:00:00");
   var days = (now - grt) / 1e3 / 60 / 60 / 24,
-  dnum = Math.floor(days),
-  hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,
-  hnum = Math.floor(hours).toString().padStart(2, '0'); // 使用 padStart 填充到两位数
-
+    dnum = Math.floor(days),
+    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,
+    hnum = Math.floor(hours);
+  1 == String(hnum).length && (hnum = "0" + hnum);
   var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
-  mnum = Math.floor(minutes).toString().padStart(2, '0'); // 使用 padStart 填充到两位数
-
+    mnum = Math.floor(minutes);
+  1 == String(mnum).length && (mnum = "0" + mnum);
   var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
-  snum = Math.round(seconds).toString().padStart(2, '0'); // 使用 padStart 填充到两位数
-
+    snum = Math.round(seconds);
+  1 == String(snum).length && (snum = "0" + snum);
   let currentTimeHtml = "";
-  currentTimeHtml = hnum < 18 && hnum >= 9
-    ? `<div style="font-size:13px;font-weight:bold">本站已经运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`
-    : `<div style="font-size:13px;font-weight:bold">本站已经运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`;
+  (currentTimeHtml =
+    hnum < 18 && hnum >= 9
+      ? `<img class='boardsign' src='https://lskypro.acozycotage.net/Fomalhaut/badge/F小屋-科研摸鱼中.svg' title='什么时候能够实现财富自由呀~'><br> <div style="font-size:13px;font-weight:bold">本站居然运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`
+      : `<img class='boardsign' src='https://lskypro.acozycotage.net/Fomalhaut/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心地玩耍~'><br> <div style="font-size:13px;font-weight:bold">本站居然运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`),
     document.getElementById("workboard") &&
     (document.getElementById("workboard").innerHTML = currentTimeHtml);
 }
@@ -2797,26 +2843,6 @@ if (window.localStorage.getItem("fpson") == undefined || window.localStorage.get
     // 不置 0，在动画的开头及结尾记录此值的差值算出 FPS
     allFrameCount++;
     frame++;
-
-    if (now > 1000 + lastTime) {
-      var fps = Math.round((frame * 1000) / (now - lastTime));
-      if (fps <= 5) {
-        var kd = `<span style="color:#bd0000"></span>`
-      } else if (fps <= 15) {
-        var kd = `<span style="color:red"></span>`
-      } else if (fps <= 25) {
-        var kd = `<span style="color:orange"></span>`
-      } else if (fps < 35) {
-        var kd = `<span style="color:#9338e6"></span>`
-      } else if (fps <= 45) {
-        var kd = `<span style="color:#08b7e4"></span>`
-      } else {
-        var kd = `<span style="color:#39c5bb"></span>`
-      }
-      document.getElementById("fps").innerHTML = `FPS:${fps} ${kd}`;
-      frame = 0;
-      lastTime = now;
-    };
 
     rAF(loop);
   }
@@ -2873,6 +2899,34 @@ function clearItem() {
 }
 
 
+// 设置字体
+if (localStorage.getItem("font") == undefined) {
+  localStorage.setItem("font", "LXGW");
+}
+setFont(localStorage.getItem("font"));
+function setFont(n) {
+  localStorage.setItem("font", n)
+  if (n == "default") {
+    document.documentElement.style.setProperty('--global-font', '-apple-system');
+    document.body.style.fontFamily = "-apple-system, Consolas_1, BlinkMacSystemFont, 'Segoe UI' , 'Helvetica Neue' , Lato, Roboto, 'PingFang SC' , 'Microsoft JhengHei' , 'Microsoft YaHei' , sans-serif";
+  }
+  else {
+    document.documentElement.style.setProperty('--global-font', n);
+    document.body.style.fontFamily = "var(--global-font),-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif";
+  }
+  try { setFontBorder(); } catch (err) { };
+}
+
+// 设置字体选择框边界
+function setFontBorder() {
+  var curFont = localStorage.getItem("font");
+  var swfId = "swf_" + curFont;
+  document.getElementById(swfId).style.border = "2px solid var(--theme-color)";
+  Array.prototype.forEach.call(document.getElementsByClassName("swf"), function (ee) {
+    if (ee.id != swfId) ee.style.border = "2px solid var(--border-color)";
+  });
+}
+
 
 // 设置主题色
 if (localStorage.getItem("themeColor") == undefined) {
@@ -2912,7 +2966,7 @@ function setUniverse() {
 
 // 雪花开关
 if (localStorage.getItem("snow") == undefined) {
-  localStorage.setItem("snow", "block");
+  localStorage.setItem("snow", "none");
 }
 document.getElementById("snow").style.display = localStorage.getItem("snow");
 function setSnow() {
@@ -3300,8 +3354,20 @@ function createWinbox() {
 </div>
 
 
+<h2>二、字体设置</h2>
+<div class="note warning modern"><p>非商免字体未经授权只能个人使用。本站为完全非商业、非盈利性质的网站，平时用于个人学习交流，如有侵权请联系站长删除，谢谢！ —— 致版权方</p>
+</div>
+<p id="swfs">
+<a class="swf" id="swf_ZhuZiAWan" href="javascript:;" rel="noopener external nofollow" style="font-family:'ZhuZiAWan'!important;color:black" onclick="setFont('ZhuZiAWan')">筑紫A丸标准体2.0</a>
+<a class="swf" id="swf_HYTMR" href="javascript:;" rel="noopener external nofollow" style="font-family:'HYTMR'!important;color:black" onclick="setFont('HYTMR')">汉仪唐美人</a>
+<a class="swf" id="swf_LXGW" href="javascript:;" rel="noopener external nofollow" style="font-family:'LXGW'!important;color:black" onclick="setFont('LXGW')">霞鹜文楷</a>
+<a class="swf" id="swf_TTQHB" href="javascript:;" rel="noopener external nofollow" style="font-family:'TTQHB'!important;color:black" onclick="setFont('TTQHB')">甜甜圈海报</a>
+<a class="swf" id="swf_YSHST" href="javascript:;" rel="noopener external nofollow" style="font-family:'YSHST'!important;color:black" onclick="setFont('YSHST')">优设好身体</a>
+<a class="swf" id="swf_MiSans" href="javascript:;" rel="noopener external nofollow" style="font-family:'MiSans'!important;color:black" onclick="setFont('MiSans')">MiSans</a>
+<a class="swf" id="swf_default" href="javascript:;" rel="noopener external nofollow" style="font-family:-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif;!important;color:black" onclick="setFont('default')">系统默认</a>
+</p>
 
-<h2>二、主题色设置</h2>
+<h2>三、主题色设置</h2>
 <div class="content" style="display:flex"><input type="radio" id="red" name="colors" value=" "
         onclick="setColor('red')"><input type="radio" id="orange" name="colors" value=" "
         onclick="setColor('orange')"><input type="radio" id="yellow" name="colors" value=" "
@@ -3314,6 +3380,74 @@ function createWinbox() {
         onclick="setColor('pink')" checked="checked"><input type="radio" id="black" name="colors" value=" "
         onclick="setColor('black')"><input type="radio" id="blackgray" name="colors" value=" "
         onclick="setColor('blackgray')"></div>
+
+<h2>四、背景设置</h2>
+<center><button onclick="resetBg()" style="background:var(--theme-color);display:block;width:35%;padding:15px 0;border-radius:30px;color:white;"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;恢复默认背景</button></center>
+
+<h3>1. 二次元</h3>
+<details class="folding-tag" cyan><summary> 查看二次元背景 </summary>
+              <div class='content'>
+              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/home_bg.webp)" class="imgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/home_bg.webp)')"></a></div>
+              </div>
+            </details>
+
+
+<h3>2. 风景</h3>
+
+<details class="folding-tag" cyan><summary> 查看风景背景 </summary>
+              <div class='content'>
+              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/fj1.webp)" class="imgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/fj1.webp)')"></a></div>
+              </div>
+            </details>
+
+<h3>3. 萌宠</h3>
+
+<details class="folding-tag" cyan><summary> 查看萌宠背景 </summary>
+              <div class='content'>
+              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/mc1.webp)" class="imgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/mc1.webp)')"></a></div>
+              </div>
+            </details>
+
+<h3>4. 渐变色</h3>
+<details class="folding-tag" cyan><summary> 查看渐变色背景 </summary>
+              <div class='content'>
+              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to right, #544a7d, #ffd452)" onclick="changeBg('linear-gradient(to right, #544a7d, #ffd452)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to bottom, #7f7fd5, #86a8e7, #91eae4)" onclick="changeBg('linear-gradient(to bottom, #7f7fd5, #86a8e7, #91eae4)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to left, #654ea3, #eaafc8)" onclick="changeBg('linear-gradient(to left, #654ea3, #eaafc8)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #feac5e, #c779d0, #4bc0c8)" onclick="changeBg('linear-gradient(to top, #feac5e, #c779d0, #4bc0c8)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #d3959b, #bfe6ba)" onclick="changeBg('linear-gradient(to top, #d3959b, #bfe6ba)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #8360c3, #2ebf91)" onclick="changeBg('linear-gradient(to top, #8360c3, #2ebf91)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #108dc7, #ef8e38)" onclick="changeBg('linear-gradient(to top, #108dc7, #ef8e38)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #355c7d, #6c5b7b, #c06c84)" onclick="changeBg('linear-gradient(to top, #355c7d, #6c5b7b, #c06c84)')"></a></div>
+              </div>
+            </details>
+
+
+<h3>5. 纯色</h3>
+<details class="folding-tag" cyan><summary> 查看纯色背景 </summary>
+              <div class='content'>
+              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #ecb1b1" onclick="changeBg('#ecb1b1')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #d3ebac" onclick="changeBg('#d3ebac')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #ace9ce" onclick="changeBg('#ace9ce')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #c1ebea" onclick="changeBg('#c1ebea')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #dee7f1" onclick="changeBg('#dee7f1')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #e9e3f2" onclick="changeBg('#e9e3f2')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #f7eff5" onclick="changeBg('#f7eff5')"></a>  <input type="color" id="define_colors" href="javascript:;" rel="noopener external nofollow" class="box" autocomplete="on" value="${defineColor}" oninput="changeBgColor()"></input></div>
+              </div>
+            </details>
+
+
+
+<h3>6. 适配手机</h3>
+<details class="folding-tag" cyan><summary> 查看适配手机的背景 </summary>
+              <div class='content'>
+              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/mb4.webp)" class="pimgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/mb4.webp)')"></a></div>
+              </div>
+            </details>
+
+
+<h3>7. 壁纸API</h3>
+<details class="folding-tag" cyan><summary> 查看壁纸API系列背景 </summary>
+              <div class='content'>
+              <div class="bgbox"><a id="bingDayBox" rel="noopener external nofollow" style="background-image: ${bingDayBg}" class="box apiBox" onclick="changeBg('${bingDayBg}')"></a><a id="bingHistoryBox" rel="noopener external nofollow" style="background-image: ${bingHistoryBg}" class="box apiBox" onclick="changeBg('${bingHistoryBg}')"></a><a id="EEEDogBox" rel="noopener external nofollow" style="background-image: ${EEEDog}" class="box apiBox" onclick="changeBg('${EEEDog}')"></a><a id="seovxBox" rel="noopener external nofollow" style="background-image: ${seovx}" class="box apiBox" onclick="changeBg('${seovx}')"></a><a id="picsumBox" rel="noopener external nofollow" style="background-image: ${picsum}" class="box apiBox" onclick="changeBg('${picsum}')"></a><a id="waiBizhiBox" rel="noopener external nofollow" style="background-image: ${waiBizhi}" class="box apiBox" onclick="changeBg('${waiBizhi}')"></a><a id="btstuBox" rel="noopener external nofollow" style="background-image: ${btstu}" class="box apiBox" onclick="changeBg('${btstu}')"></a><a id="unsplashBox" rel="noopener external nofollow" style="background-image: ${unsplash}" class="box apiBox" onclick="changeBg('${unsplash}')"></a></div>
+              </div>
+            </details>
+
+
+<h3>8. 自定义背景</h3>
+<details class="folding-tag" cyan><summary> 设置自定义背景 </summary>
+              <div class='content'>
+              <p><center><input type="text" id="pic-link" size="70%" maxlength="1000" placeholder="请输入有效的图片链接，如 https://source.fomal.cc/img/home_bg.webp"></center></p><p><center><button type="button" onclick="getPicture()" style="background:var(--theme-color);width:35%;padding: 5px 0px 7px 0px;border-radius:30px;color:white;line-height:2;">🌈切换背景🌈</button></center></p>
+              </div>
+            </details>
+
 <br>
 <center><div style="font-size:1.2em;color:var(--theme-color);font-weight:bold;">------ ( •̀ ω •́ )y 到底啦 ------</div></center>
 <br>
