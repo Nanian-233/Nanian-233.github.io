@@ -2289,38 +2289,19 @@ function setUniverse() {
   }
 }
 
-// 雪花开关，默认开启
+// 雪花开关
 if (localStorage.getItem("snow") == undefined) {
-  localStorage.setItem("snow", "block");
+  localStorage.setItem("snow", "block");  // 默认设置为开启
 }
+document.getElementById("snow").style.display = localStorage.getItem("snow"); // 根据localStorage值设置雪花显示状态
 
-// 获取元素
-let snowElement = document.getElementById("snow");
-let snowCheckbox = document.getElementById("snowSet");
-
-// 设置雪花显示状态
-if (snowElement) {
-  snowElement.style.display = localStorage.getItem("snow");
-}
-
-// 页面加载时同步 checkbox 状态
-window.onload = function () {
-  let snowState = localStorage.getItem("snow");
-  if (snowCheckbox) {
-    snowCheckbox.checked = (snowState === "block"); // 让按钮状态与 localStorage 同步
-  }
-};
-
-// 切换雪花开关
 function setSnow() {
-  if (snowCheckbox && snowElement) {
-    if (snowCheckbox.checked) {
-      snowElement.style.display = "block";
-      localStorage.setItem("snow", "block");
-    } else {
-      snowElement.style.display = "none";
-      localStorage.setItem("snow", "none");
-    }
+  if (document.getElementById("snowSet").checked) {
+    document.getElementById("snow").style.display = "block";
+    localStorage.setItem("snow", "block");  // 开启雪花
+  } else {
+    document.getElementById("snow").style.display = "none";
+    localStorage.setItem("snow", "none");  // 关闭雪花
   }
 }
 
