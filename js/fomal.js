@@ -34,7 +34,7 @@ function percent() {
 
 //----------------------------------------------------------------
 
-/* 导航栏显示标题 start */
+/* 导航栏显示标题 start*/
 
 document.addEventListener('pjax:complete', tonav);
 document.addEventListener('DOMContentLoaded', tonav);
@@ -54,7 +54,7 @@ function tonav() {
     position = scroll;
   });
   //修复没有弄右键菜单的童鞋无法回顶部的问题
-  document.getElementById("page-name").innerText = document.title.split(" | Fomalhaut🥝")[0];
+  document.getElementById("page-name").innerText = document.title.split(" | Nanian233🍊's Blog")[0];
 }
 
 function scrollToTop() {
@@ -63,7 +63,7 @@ function scrollToTop() {
   btf.scrollToDest(0, 500);
 }
 
-/* 导航栏显示标题 end */
+ /* 导航栏显示标题 end */
 
 //----------------------------------------------------------------
 
@@ -73,7 +73,7 @@ $.ajax({
   type: 'get',
   url: 'https://apis.map.qq.com/ws/location/v1/ip',
   data: {
-    key: '',  // 这里要写你的KEY!!!
+    key: 'TC2BZ-CAFW5-32UI4-IO7UI-UGL4T-NZF23',  // 这里要写你的KEY!!!
     output: 'jsonp',
   },
   dataType: 'jsonp',
@@ -99,7 +99,7 @@ function getDistance(e1, n1, e2, n2) {
 
 function showWelcome() {
 
-  let dist = getDistance(113.34499552, 23.15537143, ipLoacation.result.location.lng, ipLoacation.result.location.lat); //这里换成自己的经纬度
+  let dist = getDistance(111.830789,21.886359, ipLoacation.result.location.lng, ipLoacation.result.location.lat); //这里换成自己的经纬度
   let pos = ipLoacation.result.ad_info.nation;
   let ip;
   let posdesc;
@@ -298,40 +298,6 @@ document.addEventListener('pjax:complete', showWelcome);
 
 //----------------------------------------------------------------
 
-/* 微博热搜 start */
-document.addEventListener('pjax:complete', getWeibo);
-document.addEventListener('DOMContentLoaded', getWeibo);
-
-function getWeibo() {
-  fetch('').then(data => data.json()).then(data => {  // 这里要写上你的API!!!
-    let html = '<style>.weibo-new{background:#ff3852}.weibo-hot{background:#ff9406}.weibo-jyzy{background:#ffc000}.weibo-recommend{background:#00b7ee}.weibo-adrecommend{background:#febd22}.weibo-friend{background:#8fc21e}.weibo-boom{background:#bd0000}.weibo-topic{background:#ff6f49}.weibo-topic-ad{background:#4dadff}.weibo-boil{background:#f86400}#weibo-container{overflow-y:auto;-ms-overflow-style:none;scrollbar-width:none}#weibo-container::-webkit-scrollbar{display:none}.weibo-list-item{display:flex;flex-direction:row;justify-content:space-between;flex-wrap:nowrap}.weibo-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-right:auto}.weibo-num{float:right}.weibo-hotness{display:inline-block;padding:0 6px;transform:scale(.8) translateX(-3px);color:#fff;border-radius:8px}</style>'
-    html += '<div class="weibo-list">'
-    let hotness = {
-      '爆': 'weibo-boom',
-      '热': 'weibo-hot',
-      '沸': 'weibo-boil',
-      '新': 'weibo-new',
-      '荐': 'weibo-recommend',
-      '音': 'weibo-jyzy',
-      '影': 'weibo-jyzy',
-      '剧': 'weibo-jyzy',
-      '综': 'weibo-jyzy'
-    }
-    for (let item of data) {
-      html += '<div class="weibo-list-item"><div class="weibo-hotness ' + hotness[(item.hot || '荐')] + '">' + (item.hot || '荐') + '</div>'
-        + '<span class="weibo-title"><a title="' + item.title + '"href="' + item.url + '" target="_blank" rel="external nofollow noreferrer" style="color:#a08ed5">' + item.title + '</a></span>'
-        + '<div class="weibo-num"><span>' + item.num + '</span></div></div>'
-    }
-    html += '</div>'
-    document.getElementById('weibo-container').innerHTML = html
-  }).catch(function (error) {
-    console.log(error);
-  });
-}
-
-/* 微博热搜 end */
-
-//----------------------------------------------------------------
 
 /* 禁用f12与按键防抖 start */
 // 防抖全局计时器
@@ -620,520 +586,42 @@ function owoBig() {
 
 //----------------------------------------------------------------
 
-/* 随便逛逛 start */
-// 随便逛逛
-// 发现有时会和当前页面重复，加一个判断
-function randomPost() {
-  fetch('/baidusitemap.xml').then(res => res.text()).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then(data => {
-    let ls = data.querySelectorAll('url loc');
-    while (true) {
-      let url = ls[Math.floor(Math.random() * ls.length)].innerHTML;
-      if (location.href == url) continue;
-      location.href = url;
-      return;
-    }
-  })
-}
-/* 随便逛逛 end */
-
-//----------------------------------------------------------------
-
-/* 小猫咪 start */
-if (document.body.clientWidth > 992) {
-  function getBasicInfo() {
-    /* 窗口高度 */
-    var ViewH = $(window).height();
-    /* document高度 */
-    var DocH = $("body")[0].scrollHeight;
-    /* 滚动的高度 */
-    var ScrollTop = $(window).scrollTop();
-    /* 可滚动的高度 */
-    var S_V = DocH - ViewH;
-    var Band_H = ScrollTop / (DocH - ViewH) * 100;
-    return {
-      ViewH: ViewH,
-      DocH: DocH,
-      ScrollTop: ScrollTop,
-      Band_H: Band_H,
-      S_V: S_V
-    }
-  };
-  function show(basicInfo) {
-    if (basicInfo.ScrollTop > 0.001) {
-      $(".neko").css('display', 'block');
-    } else {
-      $(".neko").css('display', 'none');
-    }
-  }
-  (function ($) {
-    $.fn.nekoScroll = function (option) {
-      var defaultSetting = {
-        top: '0',
-        scroWidth: 6 + 'px',
-        z_index: 9999,
-        zoom: 0.9,
-        borderRadius: 5 + 'px',
-        right: 55.6 + 'px',
-        nekoImg: "https://bu.dusays.com/2022/07/20/62d812db74be9.png",
-        hoverMsg: "春天啦~",
-        color: "var(--theme-color)",
-        during: 500,
-        blog_body: "body",
-      };
-      var setting = $.extend(defaultSetting, option);
-      var getThis = this.prop("className") !== "" ? "." + this.prop("className") : this.prop("id") !== "" ? "#" +
-        this.prop("id") : this.prop("nodeName");
-      if ($(".neko").length == 0) {
-        this.after("<div class=\"neko\" id=" + setting.nekoname + " data-msg=\"" + setting.hoverMsg + "\"></div>");
-      }
-      let basicInfo = getBasicInfo();
-      $(getThis)
-        .css({
-          'position': 'fixed',
-          'width': setting.scroWidth,
-          'top': setting.top,
-          'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',
-          'z-index': setting.z_index,
-          'background-color': setting.bgcolor,
-          "border-radius": setting.borderRadius,
-          'right': setting.right,
-          'background-image': 'url(' + setting.scImg + ')',
-          'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',
-          'background-size': 'contain'
-        });
-      $("#" + setting.nekoname)
-        .css({
-          'position': 'fixed',
-          'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',
-          'z-index': setting.z_index * 10,
-          'right': setting.right,
-          'background-image': 'url(' + setting.nekoImg + ')',
-        });
-      show(getBasicInfo());
-      $(window)
-        .scroll(function () {
-          let basicInfo = getBasicInfo();
-          show(basicInfo);
-          $(getThis)
-            .css({
-              'position': 'fixed',
-              'width': setting.scroWidth,
-              'top': setting.top,
-              'height': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 + 'px',
-              'z-index': setting.z_index,
-              'background-color': setting.bgcolor,
-              "border-radius": setting.borderRadius,
-              'right': setting.right,
-              'background-image': 'url(' + setting.scImg + ')',
-              'background-image': '-webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.1) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 75%, transparent 75%, transparent)', 'border-radius': '2em',
-              'background-size': 'contain'
-            });
-          $("#" + setting.nekoname)
-            .css({
-              'position': 'fixed',
-              'top': basicInfo.Band_H * setting.zoom * basicInfo.ViewH * 0.01 - 50 + 'px',
-              'z-index': setting.z_index * 10,
-              'right': setting.right,
-              'background-image': 'url(' + setting.nekoImg + ')',
-            });
-          if (basicInfo.ScrollTop == basicInfo.S_V) {
-            $("#" + setting.nekoname)
-              .addClass("showMsg")
-          } else {
-            $("#" + setting.nekoname)
-              .removeClass("showMsg");
-            $("#" + setting.nekoname)
-              .attr("data-msg", setting.hoverMsg);
-          }
-        });
-      this.click(function (e) {
-        btf.scrollToDest(0, 500)
-      });
-      $("#" + setting.nekoname)
-        .click(function () {
-          btf.scrollToDest(0, 500)
-        });
-      return this;
-    }
-  })(jQuery);
-
-  $(document).ready(function () {
-    //部分自定义
-    $("#myscoll").nekoScroll({
-      bgcolor: 'rgb(0 0 0 / .5)', //背景颜色，没有绳子背景图片时有效
-      borderRadius: '2em',
-      zoom: 0.9
-    }
-    );
-    //自定义（去掉以下注释，并注释掉其他的查看效果）
-    /*
-    $("#myscoll").nekoScroll({
-        nekoname:'neko1', //nekoname，相当于id
-        nekoImg:'img/猫咪.png', //neko的背景图片
-        scImg:"img/绳1.png", //绳子的背景图片
-        bgcolor:'#1e90ff', //背景颜色，没有绳子背景图片时有效
-        zoom:0.9, //绳子长度的缩放值
-        hoverMsg:'你好~喵', //鼠标浮动到neko上方的对话框信息
-        right:'100px', //距离页面右边的距离
-        fontFamily:'楷体', //对话框字体
-        fontSize:'14px', //对话框字体的大小
-        color:'#1e90ff', //对话框字体颜色
-        scroWidth:'8px', //绳子的宽度
-        z_index:100, //不用解释了吧
-        during:1200, //从顶部到底部滑动的时长
-    });
-    */
-  })
-}
-
-/* 小猫咪 end */
-
-//----------------------------------------------------------------
-
-/* 右键菜单 start */
-function setMask() {
-  //设置遮罩
-  if (document.getElementsByClassName("rmMask")[0] != undefined)
-    return document.getElementsByClassName("rmMask")[0];
-  mask = document.createElement('div');
-  mask.className = "rmMask";
-  mask.style.width = window.innerWidth + 'px';
-  mask.style.height = window.innerHeight + 'px';
-  mask.style.background = '#fff';
-  mask.style.opacity = '.0';
-  mask.style.position = 'fixed';
-  mask.style.top = '0';
-  mask.style.left = '0';
-  mask.style.zIndex = 998;
-  document.body.appendChild(mask);
-  document.getElementById("rightMenu").style.zIndex = 19198;
-  return mask;
-}
-
-function insertAtCursor(myField, myValue) {
-
-  //IE 浏览器
-  if (document.selection) {
-    myField.focus();
-    sel = document.selection.createRange();
-    sel.text = myValue;
-    sel.select();
-  }
-
-  //FireFox、Chrome等
-  else if (myField.selectionStart || myField.selectionStart == '0') {
-    var startPos = myField.selectionStart;
-    var endPos = myField.selectionEnd;
-
-    // 保存滚动条
-    var restoreTop = myField.scrollTop;
-    myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos, myField.value.length);
-
-    if (restoreTop > 0) {
-      myField.scrollTop = restoreTop;
-    }
-
-    myField.focus();
-    myField.selectionStart = startPos + myValue.length;
-    myField.selectionEnd = startPos + myValue.length;
-  } else {
-    myField.value += myValue;
-    myField.focus();
-  }
-}
-
-let rmf = {};
-rmf.showRightMenu = function (isTrue, x = 0, y = 0) {
-  let $rightMenu = $('#rightMenu');
-  $rightMenu.css('top', x + 'px').css('left', y + 'px');
-
-  if (isTrue) {
-    $rightMenu.show();
-  } else {
-    $rightMenu.hide();
-  }
-}
-
-rmf.copyWordsLink = function () {
-  let url = window.location.href
-  let txa = document.createElement("textarea");
-  txa.value = url;
-  document.body.appendChild(txa)
-  txa.select();
-  document.execCommand("Copy");
-  document.body.removeChild(txa);
-}
-rmf.switchReadMode = function () {
-  const $body = document.body
-  $body.classList.add('read-mode')
-  const newEle = document.createElement('button')
-  newEle.type = 'button'
-  newEle.className = 'fas fa-sign-out-alt exit-readmode'
-  $body.appendChild(newEle)
-
-  function clickFn() {
-    $body.classList.remove('read-mode')
-    newEle.remove()
-    newEle.removeEventListener('click', clickFn)
-  }
-
-  newEle.addEventListener('click', clickFn)
-}
-
-//复制选中文字
-rmf.copySelect = function () {
-  document.execCommand('Copy', false, null);
-}
-
-//回到顶部
-rmf.scrollToTop = function () {
-  document.getElementsByClassName("menus_items")[1].setAttribute("style", "");
-  document.getElementById("name-container").setAttribute("style", "display:none");
-  btf.scrollToDest(0, 500);
-}
-
-document.body.addEventListener('touchmove', function () {
-
-}, { passive: false });
-
-function popupMenu() {
-  window.oncontextmenu = function (event) {
-    // if (event.ctrlKey) return true;
-
-    // 当关掉自定义右键时候直接返回
-    if (mouseMode == "off") return true;
-
-    $('.rightMenu-group.hide').hide();
-    if (document.getSelection().toString()) {
-      $('#menu-text').show();
-    }
-    if (document.getElementById('post')) {
-      $('#menu-post').show();
-    } else {
-      if (document.getElementById('page')) {
-        $('#menu-post').show();
-      }
-    }
-    var el = window.document.body;
-    el = event.target;
-    var a = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/
-    if (a.test(window.getSelection().toString()) && el.tagName != "A") {
-      $('#menu-too').show()
-    }
-    if (el.tagName == 'A') {
-      $('#menu-to').show()
-      rmf.open = function () {
-        if (el.href.indexOf("http://") == -1 && el.href.indexOf("https://") == -1 || el.href.indexOf("yisous.xyz") != -1) {
-          pjax.loadUrl(el.href)
-        }
-        else {
-          location.href = el.href
-        }
-      }
-      rmf.openWithNewTab = function () {
-        window.open(el.href);
-        // window.location.reload();
-      }
-      rmf.copyLink = function () {
-        let url = el.href
-        let txa = document.createElement("textarea");
-        txa.value = url;
-        document.body.appendChild(txa)
-        txa.select();
-        document.execCommand("Copy");
-        document.body.removeChild(txa);
-      }
-    } else if (el.tagName == 'IMG') {
-      $('#menu-img').show()
-      rmf.openWithNewTab = function () {
-        window.open(el.src);
-        // window.location.reload();
-      }
-      rmf.click = function () {
-        el.click()
-      }
-      rmf.copyLink = function () {
-        let url = el.src
-        let txa = document.createElement("textarea");
-        txa.value = url;
-        document.body.appendChild(txa)
-        txa.select();
-        document.execCommand("Copy");
-        document.body.removeChild(txa);
-      }
-      rmf.saveAs = function () {
-        var a = document.createElement('a');
-        var url = el.src;
-        var filename = url.split("/")[-1];
-        a.href = url;
-        a.download = filename;
-        a.click();
-        window.URL.revokeObjectURL(url);
-      }
-    } else if (el.tagName == "TEXTAREA" || el.tagName == "INPUT") {
-      $('#menu-paste').show();
-      rmf.paste = function () {
-        navigator.permissions
-          .query({
-            name: 'clipboard-read'
-          })
-          .then(result => {
-            if (result.state == 'granted' || result.state == 'prompt') {
-              //读取剪贴板
-              navigator.clipboard.readText().then(text => {
-                console.log(text)
-                insertAtCursor(el, text)
-              })
-            } else {
-              Snackbar.show({
-                text: '请允许读取剪贴板！',
-                pos: 'top-center',
-                showAction: false,
-              })
-            }
-          })
-      }
-    }
-    let pageX = event.clientX + 10;
-    let pageY = event.clientY;
-    let rmWidth = $('#rightMenu').width();
-    let rmHeight = $('#rightMenu').height();
-    if (pageX + rmWidth > window.innerWidth) {
-      pageX -= rmWidth + 10;
-    }
-    if (pageY + rmHeight > window.innerHeight) {
-      pageY -= pageY + rmHeight - window.innerHeight;
-    }
-    mask = setMask();
-    // 滚动消失的代码和阅读进度有冲突，因此放到readPercent.js里面了
-    $(".rightMenu-item").click(() => {
-      $('.rmMask').attr('style', 'display: none');
-    })
-    $(window).resize(() => {
-      rmf.showRightMenu(false);
-      $('.rmMask').attr('style', 'display: none');
-    })
-    mask.onclick = () => {
-      $('.rmMask').attr('style', 'display: none');
-    }
-    rmf.showRightMenu(true, pageY, pageX);
-    $('.rmMask').attr('style', 'display: flex');
-    return false;
-  };
-
-  window.addEventListener('click', function () {
-    rmf.showRightMenu(false);
-  });
-}
-if (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-  popupMenu()
-}
-const box = document.documentElement
-
-function addLongtabListener(target, callback) {
-  let timer = 0 // 初始化timer
-
-  target.ontouchstart = () => {
-    timer = 0 // 重置timer
-    timer = setTimeout(() => {
-      callback();
-      timer = 0
-    }, 380) // 超时器能成功执行，说明是长按
-  }
-
-  target.ontouchmove = () => {
-    clearTimeout(timer) // 如果来到这里，说明是滑动
-    timer = 0
-  }
-
-  target.ontouchend = () => { // 到这里如果timer有值，说明此触摸时间不足380ms，是点击
-    if (timer) {
-      clearTimeout(timer)
-    }
-  }
-}
-
-addLongtabListener(box, popupMenu)
-
-// 全屏
-rmf.fullScreen = function () {
-  if (document.fullscreenElement) document.exitFullscreen();
-  else document.documentElement.requestFullscreen();
-}
-
-// 右键开关
-if (localStorage.getItem("mouse") == undefined) {
-  localStorage.setItem("mouse", "on");
-}
-var mouseMode = localStorage.getItem("mouse");
-function changeMouseMode() {
-  if (localStorage.getItem("mouse") == "on") {
-    mouseMode = "off";
-    localStorage.setItem("mouse", "off");
-    debounce(function () {
-      new Vue({
-        data: function () {
-          this.$notify({
-            title: "切换右键模式成功🍔",
-            message: "当前鼠标右键已恢复为系统默认！",
-            position: 'top-left',
-            offset: 50,
-            showClose: true,
-            type: "success",
-            duration: 5000
-          });
-        }
-      })
-    }, 300);
-  } else {
-    mouseMode = "on";
-    localStorage.setItem("mouse", "on");
-    debounce(function () {
-      new Vue({
-        data: function () {
-          this.$notify({
-            title: "切换右键模式成功🍔",
-            message: "当前鼠标右键已更换为网站指定样式！",
-            position: 'top-left',
-            offset: 50,
-            showClose: true,
-            type: "success",
-            duration: 5000
-          });
-        }
-      })
-    }, 300);
-  }
-}
-/* 右键菜单 end */
-
-//----------------------------------------------------------------
-
 /* 控制台输出字符画 start */
 var now1 = new Date();
 
 function createtime1() {
-  var grt = new Date("08/09/2022 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  var grt = new Date("2024/03/05 20:00:00"); //此处修改你的建站时间或者网站上线时间
   now1.setTime(now1.getTime() + 250);
   var days = (now1 - grt) / 1000 / 60 / 60 / 24;
   var dnum = Math.floor(days);
 
   var ascll = [
-    `欢迎来到Fomalhaut🥝の小家!`,
-    `Future is now 🍭🍭🍭`,
+    `欢迎来到Nanian233🍊の小家!`,
+    `Never give up!💪`,
     `
-        
-███████  ██████  ███    ███  █████  ██      ██   ██  █████  ██    ██ ████████ 
-██      ██    ██ ████  ████ ██   ██ ██      ██   ██ ██   ██ ██    ██    ██    
-█████   ██    ██ ██ ████ ██ ███████ ██      ███████ ███████ ██    ██    ██    
-██      ██    ██ ██  ██  ██ ██   ██ ██      ██   ██ ██   ██ ██    ██    ██    
-██       ██████  ██      ██ ██   ██ ███████ ██   ██ ██   ██  ██████     ██   
-                                              
-`,
-    "小站已经苟活",
+                                                                                                                                                     
+    NNNNNNNN        NNNNNNNN                                      iiii                                       222222222222222     333333333333333    333333333333333   
+    N:::::::N       N::::::N                                     i::::i                                     2:::::::::::::::22  3:::::::::::::::33 3:::::::::::::::33 
+    N::::::::N      N::::::N                                      iiii                                      2::::::222222:::::2 3::::::33333::::::33::::::33333::::::3
+    N:::::::::N     N::::::N                                                                                2222222     2:::::2 3333333     3:::::33333333     3:::::3
+    N::::::::::N    N::::::N  aaaaaaaaaaaaa   nnnn  nnnnnnnn    iiiiiii   aaaaaaaaaaaaa   nnnn  nnnnnnnn                2:::::2             3:::::3            3:::::3
+    N:::::::::::N   N::::::N  a::::::::::::a  n:::nn::::::::nn  i:::::i   a::::::::::::a  n:::nn::::::::nn              2:::::2             3:::::3            3:::::3
+    N:::::::N::::N  N::::::N  aaaaaaaaa:::::a n::::::::::::::nn  i::::i   aaaaaaaaa:::::a n::::::::::::::nn          2222::::2      33333333:::::3     33333333:::::3 
+    N::::::N N::::N N::::::N           a::::a nn:::::::::::::::n i::::i            a::::a nn:::::::::::::::n    22222::::::22       3:::::::::::3      3:::::::::::3  
+    N::::::N  N::::N:::::::N    aaaaaaa:::::a   n:::::nnnn:::::n i::::i     aaaaaaa:::::a   n:::::nnnn:::::n  22::::::::222         33333333:::::3     33333333:::::3 
+    N::::::N   N:::::::::::N  aa::::::::::::a   n::::n    n::::n i::::i   aa::::::::::::a   n::::n    n::::n 2:::::22222                    3:::::3            3:::::3
+    N::::::N    N::::::::::N a::::aaaa::::::a   n::::n    n::::n i::::i  a::::aaaa::::::a   n::::n    n::::n2:::::2                         3:::::3            3:::::3
+    N::::::N     N:::::::::Na::::a    a:::::a   n::::n    n::::n i::::i a::::a    a:::::a   n::::n    n::::n2:::::2                         3:::::3            3:::::3
+    N::::::N      N::::::::Na::::a    a:::::a   n::::n    n::::ni::::::ia::::a    a:::::a   n::::n    n::::n2:::::2       2222223333333     3:::::33333333     3:::::3
+    N::::::N       N:::::::Na:::::aaaa::::::a   n::::n    n::::ni::::::ia:::::aaaa::::::a   n::::n    n::::n2::::::2222222:::::23::::::33333::::::33::::::33333::::::3
+    N::::::N        N::::::N a::::::::::aa:::a  n::::n    n::::ni::::::i a::::::::::aa:::a  n::::n    n::::n2::::::::::::::::::23:::::::::::::::33 3:::::::::::::::33 
+    NNNNNNNN         NNNNNNN  aaaaaaaaaa  aaaa  nnnnnn    nnnnnniiiiiiii  aaaaaaaaaa  aaaa  nnnnnn    nnnnnn22222222222222222222 333333333333333    333333333333333   
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+    `,
+    "小站已经存活",
     dnum,
     "天啦!",
-    "©2022 By Fomalhaut",
+    "©2024 By Nanian233",
   ];
 
   setTimeout(
@@ -1172,7 +660,7 @@ function createtime2() {
   setTimeout(
     console.warn.bind(
       console,
-      "%c ⚡ Powered by Fomalhaut🥝 %c 你正在访问Fomalhaut🥝の小家",
+      "%c ⚡ Powered by Nanian233🍊 %c 你正在访问Nanian233🍊の小家",
       "color:white; background-color:#f0ad4e",
       ""
     )
@@ -1194,84 +682,28 @@ console.warn = function () { };
 
 //----------------------------------------------------------------
 
-/* 夜间模式切换动画 start */
+/* 夜间模式切换 start */
 function switchNightMode() {
-  document.querySelector('body').insertAdjacentHTML('beforeend', '<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"><div id="sun"></div><div id="moon"></div></div></div>'),
-    setTimeout(function () {
-      document.querySelector('body').classList.contains('DarkMode') ? (document.querySelector('body').classList.remove('DarkMode'), localStorage.setItem('isDark', '0'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')) : (document.querySelector('body').classList.add('DarkMode'), localStorage.setItem('isDark', '1'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')),
-        setTimeout(function () {
-          document.getElementsByClassName('Cuteen_DarkSky')[0].style.transition = 'opacity 3s';
-          document.getElementsByClassName('Cuteen_DarkSky')[0].style.opacity = '0';
-          setTimeout(function () {
-            document.getElementsByClassName('Cuteen_DarkSky')[0].remove();
-          }, 1e3);
-        }, 2e3)
-    })
-  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+  const body = document.querySelector('body');
+  const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+
   if (nowMode === 'light') {
-    // 先设置太阳月亮透明度
-    document.getElementById("sun").style.opacity = "1";
-    document.getElementById("moon").style.opacity = "0";
-    setTimeout(function () {
-      document.getElementById("sun").style.opacity = "0";
-      document.getElementById("moon").style.opacity = "1";
-    }, 1000);
-
-    activateDarkMode()
-    saveToLocal.set('theme', 'dark', 2)
-    // GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
-    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun')
-    // 延时弹窗提醒
-    setTimeout(() => {
-      new Vue({
-        data: function () {
-          this.$notify({
-            title: "关灯啦🌙",
-            message: "当前已成功切换至夜间模式！",
-            position: 'top-left',
-            offset: 50,
-            showClose: true,
-            type: "success",
-            duration: 5000
-          });
-        }
-      })
-    }, 2000)
+    activateDarkMode();
+    saveToLocal.set('theme', 'dark', 2);
+    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-sun');
   } else {
-    // 先设置太阳月亮透明度
-    document.getElementById("sun").style.opacity = "0";
-    document.getElementById("moon").style.opacity = "1";
-    setTimeout(function () {
-      document.getElementById("sun").style.opacity = "1";
-      document.getElementById("moon").style.opacity = "0";
-    }, 1000);
-
-    activateLightMode()
-    saveToLocal.set('theme', 'light', 2)
-    document.querySelector('body').classList.add('DarkMode'), document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon')
-    setTimeout(() => {
-      new Vue({
-        data: function () {
-          this.$notify({
-            title: "开灯啦🌞",
-            message: "当前已成功切换至白天模式！",
-            position: 'top-left',
-            offset: 50,
-            showClose: true,
-            type: "success",
-            duration: 5000
-          });
-        }
-      })
-    }, 2000)
+    activateLightMode();
+    saveToLocal.set('theme', 'light', 2);
+    document.getElementById('modeicon').setAttribute('xlink:href', '#icon-moon');
   }
-  // handle some cases
-  typeof utterancesTheme === 'function' && utterancesTheme()
-  typeof FB === 'object' && window.loadFBComment()
-  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)
-}
 
-/* 夜间模式切换动画 end */
+  // handle some cases
+  typeof utterancesTheme === 'function' && utterancesTheme();
+  typeof FB === 'object' && window.loadFBComment();
+  window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200);
+}
+/* 夜间模式切换 end */
+
 
 //----------------------------------------------------------------
 
@@ -1282,8 +714,8 @@ function share_() {
   try {
     // 截取标题
     var title = document.title;
-    var subTitle = title.endsWith("| Fomalhaut🥝") ? title.substring(0, title.length - 14) : title;
-    navigator.clipboard.writeText('Fomalhaut🥝的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n欢迎来访！🍭🍭🍭');
+    var subTitle = title.endsWith("| Nanian233🍊") ? title.substring(0, title.length - 14) : title;
+    navigator.clipboard.writeText('Nanian233🍊的站内分享\n标题：' + subTitle + '\n链接：' + url + '\n欢迎来访！🍭🍭🍭');
     new Vue({
       data: function () {
         this.$notify({
@@ -1311,28 +743,6 @@ function share() {
 }
 
 /* 分享按钮 end */
-
-//----------------------------------------------------------------
-
-/* 恶搞标题 start */
-//动态标题
-var OriginTitile = document.title;
-var titleTime;
-document.addEventListener('visibilitychange', function () {
-  if (document.hidden) {
-    //离开当前页面时标签显示内容
-    document.title = '👀跑哪里去了~';
-    clearTimeout(titleTime);
-  } else {
-    //返回当前页面时标签显示内容
-    document.title = '🐖抓到你啦～';
-    //两秒后变回正常标题
-    titleTime = setTimeout(function () {
-      document.title = OriginTitile;
-    }, 2000);
-  }
-});
-/* 恶搞标题 end */
 
 //----------------------------------------------------------------
 
@@ -2594,13 +2004,6 @@ if ((lunar["IMonthCn"] == "九月" && lunar["IDayCn"] == "初九")) {
   }
 }
 
-// 切换主题提醒
-// if (y == 2022 && m == 12 && (dd >= 18 && dd <= 20)) {
-//     if (sessionStorage.getItem("isPopupWindow") != "1") {
-//         Swal.fire("网站换成冬日限定主题啦⛄");
-//         sessionStorage.setItem("isPopupWindow", "1");
-//     }
-// }
 
 
 /* 节日弹窗 end */
@@ -2710,102 +2113,32 @@ class Cursor {
 
 //----------------------------------------------------------------
 
-/* 新年倒计时 start */
-// let newYearTimer = null;
-// var newYear = () => {
-//   clearTimeout(newYearTimer);
-//   if (!document.querySelector('#newYear')) return;
-//   // 新年时间戳 and 星期对象
-//   let newYear = new Date('2023-01-22 00:00:00').getTime() / 1000,
-//     week = { 0: '周日', 1: '周一', 2: '周二', 3: '周三', 4: '周四', 5: '周五', 6: '周六' }
-
-//   time();
-
-//   // 补零函数
-//   function nol(h) { return h > 9 ? h : '0' + h; };
-
-//   function time() {
-//     // 现在 时间对象
-//     let now = new Date();
-
-//     // 右下角 今天
-//     document.querySelector('#newYear .today').innerHTML = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate() + ' ' + week[now.getDay()]
-
-//     // 现在与新年相差秒数
-//     let second = newYear - Math.round(now.getTime() / 1000);
-
-//     // 小于0则表示已经过年
-//     if (second < 0) {
-//       document.querySelector('#newYear .title').innerHTML = 'Happy New Year!';
-//       document.querySelector('#newYear .newYear-time').innerHTML = '<span class="happyNewYear">新年快乐</p>';
-//     } else {
-//       // 大于0则还未过年
-//       document.querySelector('#newYear .title').innerHTML = '距离2023年春节：'
-
-//       // 大于一天则直接渲染天数
-//       if (second > 86400) {
-//         document.querySelector('#newYear .newYear-time').innerHTML = `<span class="day">${Math.ceil(second / 86400)}<span class="unit">天</span></span>`
-//       } else {
-//         // 小于一天则使用时分秒计时。
-//         let h = nol(parseInt(second / 3600));
-//         second %= 3600;
-//         let m = nol(parseInt(second / 60));
-//         second %= 60;
-//         let s = nol(second);
-//         document.querySelector('#newYear .newYear-time').innerHTML = `<span class="time">${h}:${m}:${s}</span></span>`;
-//         // 计时
-//         newYearTimer = setTimeout(time, 1000);
-//       }
-//     }
-//   }
-
-//   // 元宝飘落
-//   jQuery(document).ready(function ($) {
-//     $('#newYear').wpSuperSnow({
-//       flakes: ['https://tuchuang.voooe.cn/images/2023/01/02/yb1.webp', 'https://tuchuang.voooe.cn/images/2023/01/02/yb2.webp', 'https://tuchuang.voooe.cn/images/2023/01/02/yb3.webp'],
-//       totalFlakes: '100',
-//       zIndex: '999999',
-//       maxSize: '30',
-//       maxDuration: '20',
-//       useFlakeTrans: false
-//     });
-//   });
-// }
-// // Pjax适配：若没有开启Pjax这里直接是newYear()即可
-// // 开了Pjax的用以下两句
-// document.addEventListener('pjax:complete', newYear);
-// document.addEventListener('DOMContentLoaded', newYear);
-
-/* 新年倒计时 end */
-
-//----------------------------------------------------------------
 
 /* 页脚计时器 start */
 var now = new Date();
 function createtime() {
   // 当前时间
   now.setTime(now.getTime() + 1000);
-  var start = new Date("08/01/2022 00:00:00"); // 旅行者1号开始计算的时间
+  var start = new Date("1977/09/05 12:56:00"); // 旅行者1号开始计算的时间
   var dis = Math.trunc(23400000000 + ((now - start) / 1000) * 17); // 距离=秒数*速度 记住转换毫秒
   var unit = (dis / 149600000).toFixed(6);  // 天文单位
   // 网站诞生时间
-  var grt = new Date("08/09/2022 00:00:00");
+  var grt = new Date("2024/03/05 20:00:00");
   var days = (now - grt) / 1e3 / 60 / 60 / 24,
-    dnum = Math.floor(days),
-    hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,
-    hnum = Math.floor(hours);
-  1 == String(hnum).length && (hnum = "0" + hnum);
+  dnum = Math.floor(days),
+  hours = (now - grt) / 1e3 / 60 / 60 - 24 * dnum,
+  hnum = Math.floor(hours).toString().padStart(2, '0'); // 使用 padStart 填充到两位数
+
   var minutes = (now - grt) / 1e3 / 60 - 1440 * dnum - 60 * hnum,
-    mnum = Math.floor(minutes);
-  1 == String(mnum).length && (mnum = "0" + mnum);
+  mnum = Math.floor(minutes).toString().padStart(2, '0'); // 使用 padStart 填充到两位数
+
   var seconds = (now - grt) / 1e3 - 86400 * dnum - 3600 * hnum - 60 * mnum,
-    snum = Math.round(seconds);
-  1 == String(snum).length && (snum = "0" + snum);
+  snum = Math.round(seconds).toString().padStart(2, '0'); // 使用 padStart 填充到两位数
+
   let currentTimeHtml = "";
-  (currentTimeHtml =
-    hnum < 18 && hnum >= 9
-      ? `<img class='boardsign' src='https://lskypro.acozycotage.net/Fomalhaut/badge/F小屋-科研摸鱼中.svg' title='什么时候能够实现财富自由呀~'><br> <div style="font-size:13px;font-weight:bold">本站居然运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`
-      : `<img class='boardsign' src='https://lskypro.acozycotage.net/Fomalhaut/badge/F小屋-下班休息啦.svg' title='下班了就该开开心心地玩耍~'><br> <div style="font-size:13px;font-weight:bold">本站居然运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`),
+  currentTimeHtml = hnum < 18 && hnum >= 9
+    ? `<div style="font-size:13px;font-weight:bold">本站已经运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`
+    : `<div style="font-size:13px;font-weight:bold">本站已经运行了 ${dnum} 天 ${hnum} 小时 ${mnum} 分 ${snum} 秒 <i id="heartbeat" class='fas fa-heartbeat'></i> <br> 旅行者 1 号当前距离地球 ${dis} 千米，约为 ${unit} 个天文单位 🚀</div>`;
     document.getElementById("workboard") &&
     (document.getElementById("workboard").innerHTML = currentTimeHtml);
 }
@@ -2843,6 +2176,26 @@ if (window.localStorage.getItem("fpson") == undefined || window.localStorage.get
     // 不置 0，在动画的开头及结尾记录此值的差值算出 FPS
     allFrameCount++;
     frame++;
+
+    if (now > 1000 + lastTime) {
+      var fps = Math.round((frame * 1000) / (now - lastTime));
+      if (fps <= 5) {
+        var kd = `<span style="color:#bd0000"></span>`
+      } else if (fps <= 15) {
+        var kd = `<span style="color:red"></span>`
+      } else if (fps <= 25) {
+        var kd = `<span style="color:orange"></span>`
+      } else if (fps < 35) {
+        var kd = `<span style="color:#9338e6"></span>`
+      } else if (fps <= 45) {
+        var kd = `<span style="color:#08b7e4"></span>`
+      } else {
+        var kd = `<span style="color:#39c5bb"></span>`
+      }
+      document.getElementById("fps").innerHTML = `FPS:${fps} ${kd}`;
+      frame = 0;
+      lastTime = now;
+    };
 
     rAF(loop);
   }
@@ -2899,34 +2252,6 @@ function clearItem() {
 }
 
 
-// 设置字体
-if (localStorage.getItem("font") == undefined) {
-  localStorage.setItem("font", "LXGW");
-}
-setFont(localStorage.getItem("font"));
-function setFont(n) {
-  localStorage.setItem("font", n)
-  if (n == "default") {
-    document.documentElement.style.setProperty('--global-font', '-apple-system');
-    document.body.style.fontFamily = "-apple-system, Consolas_1, BlinkMacSystemFont, 'Segoe UI' , 'Helvetica Neue' , Lato, Roboto, 'PingFang SC' , 'Microsoft JhengHei' , 'Microsoft YaHei' , sans-serif";
-  }
-  else {
-    document.documentElement.style.setProperty('--global-font', n);
-    document.body.style.fontFamily = "var(--global-font),-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif";
-  }
-  try { setFontBorder(); } catch (err) { };
-}
-
-// 设置字体选择框边界
-function setFontBorder() {
-  var curFont = localStorage.getItem("font");
-  var swfId = "swf_" + curFont;
-  document.getElementById(swfId).style.border = "2px solid var(--theme-color)";
-  Array.prototype.forEach.call(document.getElementsByClassName("swf"), function (ee) {
-    if (ee.id != swfId) ee.style.border = "2px solid var(--border-color)";
-  });
-}
-
 
 // 设置主题色
 if (localStorage.getItem("themeColor") == undefined) {
@@ -2966,7 +2291,7 @@ function setUniverse() {
 
 // 雪花开关
 if (localStorage.getItem("snow") == undefined) {
-  localStorage.setItem("snow", "none");
+  localStorage.setItem("snow", "block");
 }
 document.getElementById("snow").style.display = localStorage.getItem("snow");
 function setSnow() {
@@ -3079,158 +2404,6 @@ function setBlur() {
   }
 }
 
-// 更换背景(原来Leonus的代码)
-// 存数据
-// name：命名 data：数据
-// function saveData(name, data) {
-//   localStorage.setItem(name, JSON.stringify({ time: Date.now(), data: data }));
-// }
-// 取数据
-// name：命名 time：过期时长,单位分钟,如传入30,即加载数据时如果超出30分钟返回0,否则返回数据
-// function loadData(name, time) {
-//   let d = JSON.parse(localStorage.getItem(name));
-//   // 过期或有错误返回 0 否则返回数据
-//   if (d) {
-//     let t = Date.now() - d.time;
-//     if (t < time * 60 * 1000 && t > -1) return d.data;
-//   }
-//   return 0;
-// }
-// 上面两个函数如果你有其他需要存取数据的功能，也可以直接使用
-// 读取背景
-// try {
-//   let data = loadData("blogbg", 1440);
-//   if (data) changeBg(data, 1);
-//   else localStorage.removeItem("blogbg");
-// } catch (error) {
-//   localStorage.removeItem("blogbg");
-// }
-// 切换背景函数
-// 此处的flag是为了每次读取时都重新存储一次,导致过期时间不稳定
-// 如果flag为0则存储,即设置背景. 为1则不存储,即每次加载自动读取背景.
-// function changeBg(s, flag) {
-//   let bg = document.getElementById("web_bg");
-//   if (s.charAt(0) == "#") {
-//     bg.style.backgroundColor = s;
-//     bg.style.backgroundImage = "none";
-//   } else {
-//     bg.style.backgroundImage = s
-//   };
-//   if (!flag) {
-//     saveData("blogbg", s);
-//   }
-// }
-
-// 切换自定义颜色
-var defineColor = localStorage.getItem("blogbg") && localStorage.getItem("blogbg").charAt(0) == '#' ? localStorage.getItem("blogbg") : '#F4D88A';
-function changeBgColor() {
-  changeBg(document.querySelector("#define_colors").value);
-}
-
-// 必应每日壁纸API
-let bingDayBg = screen.width <= 768 ? "url(https://bing.img.run/m.php)" : "url(https://bing.img.run/1920x1080.php)";
-// 必应历史壁纸API
-let bingHistoryBg = screen.width <= 768 ? "url(https://bing.img.run/rand_m.php)" : "url(https://bing.img.run/rand.php)";
-// EEE.DOG
-let EEEDog = "url(https://api.yimian.xyz/img?type=moe&size=1920x1080)";
-// 随机美图cdn.seovx.com
-let seovx = "url(https://cdn.seovx.com/?mom=302)";
-// picsum随机
-let picsum = "url(https://picsum.photos/1920/1080.webp)";
-// 小歪二次元
-// let waiDongman = "url(https://api.ixiaowai.cn/api/api.php)";
-//  小歪高清壁纸
-let waiBizhi = "url(https://api.ixiaowai.cn/gqapi/gqapi.php)";
-// 博天随机
-let btstu = "url(http://api.btstu.cn/sjbz/?lx=suiji)";
-// tuapi 动漫
-// let tuapi = "url(https://tuapi.eees.cc/api.php?category=dongman)";
-// unsplash随机 https://source.unsplash.com/random/1920x1080/daily (weekly)
-let unsplash = "url(https://source.unsplash.com/random/1920x1080/)";
-
-
-// 更换背景(自己的代码)
-if (localStorage.getItem("blogbg") != undefined) {
-  setBg(localStorage.getItem("blogbg"));
-} else {
-  document.getElementById("defineBg").innerText = `:root{
-    --default-bg: url(https://lskypro.acozycotage.net/Fomalhaut/img/dm14.webp);
-    --darkmode-bg:url(https://lskypro.acozycotage.net/Fomalhaut/img/yuanshen1.webp);
-    --mobileday-bg: url(https://lskypro.acozycotage.net/Fomalhaut/img/snow.webp);
-    --mobilenight-bg: url(https://lskypro.acozycotage.net/Fomalhaut/img/mb8.webp);
-  }`;
-}
-// 切换背景主函数
-function changeBg(s) {
-  // 自定义颜色框
-  defineColor = s.charAt(0) == "#" ? s : '#F4D88A';
-  setBg(s);
-  localStorage.setItem("blogbg", s);
-}
-// 设置背景属性
-function setBg(s) {
-  document.getElementById("defineBg").innerText = `:root{
-    --default-bg: ${s};
-    --darkmode-bg: ${s};
-    --mobileday-bg: ${s};
-    --mobilenight-bg: ${s};
-  }`;
-}
-
-// 切换链接对应的背景(加入了链接检验与防抖)
-function getPicture() {
-  debounce(getPicture_, 300);
-}
-
-function getPicture_() {
-  checkImgExists(document.getElementById("pic-link").value).then(() => {
-    // 有效的图片链接
-    var link = "url(" + document.getElementById("pic-link").value + ")";
-    changeBg(link);
-    // 提示切换成功
-    new Vue({
-      data: function () {
-        this.$notify({
-          title: "可以啦🍨",
-          message: "切换自定义背景成功！",
-          position: 'top-left',
-          offset: 50,
-          showClose: true,
-          type: "success",
-          duration: 5000
-        });
-      }
-    })
-  }).catch(() => {
-    // 无效的图片链接，提示无效
-    new Vue({
-      data: function () {
-        this.$notify({
-          title: "链接不对🤣",
-          message: "请输入有效的图片链接！",
-          position: 'top-left',
-          offset: 50,
-          showClose: true,
-          type: "warning",
-          duration: 5000
-        });
-      }
-    })
-  })
-}
-// 判断图片链接是否可用
-function checkImgExists(imgurl) {
-  return new Promise(function (resolve, reject) {
-    var ImgObj = new Image();
-    ImgObj.src = imgurl;
-    ImgObj.onload = function (res) {
-      resolve(res);
-    }
-    ImgObj.onerror = function (err) {
-      reject(err);
-    }
-  })
-}
 
 // 黑夜霓虹灯开关
 if (localStorage.getItem("light") == undefined) {
@@ -3267,28 +2440,6 @@ function changeLight(flag) {
 
 
 
-// 解决开启Pjax的问题
-// function whenDOMReady() {
-//   try {
-//     let data = loadData('blogbg', 1440)
-//     if (data) changeBg_noWindow(data, 0)
-//     else localStorage.removeItem('blogbg');
-//   } catch (error) { localStorage.removeItem('blogbg'); }
-// }
-// whenDOMReady()
-// document.addEventListener("pjax:success", whenDOMReady)
-
-// 无弹窗提醒更换背景
-// function changeBg_noWindow(s, flag) {
-//   let bg = document.getElementById("web_bg");
-//   if (s.charAt(0) == "#") {
-//     bg.style.backgroundColor = s;
-//     bg.style.backgroundImage = "none";
-//   } else bg.style.backgroundImage = s;
-//   if (!flag) {
-//     saveData("blogbg", s);
-//   }
-// }
 
 // 创建窗口
 var winbox = "";
@@ -3354,20 +2505,8 @@ function createWinbox() {
 </div>
 
 
-<h2>二、字体设置</h2>
-<div class="note warning modern"><p>非商免字体未经授权只能个人使用。本站为完全非商业、非盈利性质的网站，平时用于个人学习交流，如有侵权请联系站长删除，谢谢！ —— 致版权方</p>
-</div>
-<p id="swfs">
-<a class="swf" id="swf_ZhuZiAWan" href="javascript:;" rel="noopener external nofollow" style="font-family:'ZhuZiAWan'!important;color:black" onclick="setFont('ZhuZiAWan')">筑紫A丸标准体2.0</a>
-<a class="swf" id="swf_HYTMR" href="javascript:;" rel="noopener external nofollow" style="font-family:'HYTMR'!important;color:black" onclick="setFont('HYTMR')">汉仪唐美人</a>
-<a class="swf" id="swf_LXGW" href="javascript:;" rel="noopener external nofollow" style="font-family:'LXGW'!important;color:black" onclick="setFont('LXGW')">霞鹜文楷</a>
-<a class="swf" id="swf_TTQHB" href="javascript:;" rel="noopener external nofollow" style="font-family:'TTQHB'!important;color:black" onclick="setFont('TTQHB')">甜甜圈海报</a>
-<a class="swf" id="swf_YSHST" href="javascript:;" rel="noopener external nofollow" style="font-family:'YSHST'!important;color:black" onclick="setFont('YSHST')">优设好身体</a>
-<a class="swf" id="swf_MiSans" href="javascript:;" rel="noopener external nofollow" style="font-family:'MiSans'!important;color:black" onclick="setFont('MiSans')">MiSans</a>
-<a class="swf" id="swf_default" href="javascript:;" rel="noopener external nofollow" style="font-family:-apple-system, IBM Plex Mono ,monosapce,'微软雅黑', sans-serif;!important;color:black" onclick="setFont('default')">系统默认</a>
-</p>
 
-<h2>三、主题色设置</h2>
+<h2>二、主题色设置</h2>
 <div class="content" style="display:flex"><input type="radio" id="red" name="colors" value=" "
         onclick="setColor('red')"><input type="radio" id="orange" name="colors" value=" "
         onclick="setColor('orange')"><input type="radio" id="yellow" name="colors" value=" "
@@ -3380,74 +2519,6 @@ function createWinbox() {
         onclick="setColor('pink')" checked="checked"><input type="radio" id="black" name="colors" value=" "
         onclick="setColor('black')"><input type="radio" id="blackgray" name="colors" value=" "
         onclick="setColor('blackgray')"></div>
-
-<h2>四、背景设置</h2>
-<center><button onclick="resetBg()" style="background:var(--theme-color);display:block;width:35%;padding:15px 0;border-radius:30px;color:white;"><i class="fa-solid fa-arrows-rotate"></i>&nbsp;恢复默认背景</button></center>
-
-<h3>1. 二次元</h3>
-<details class="folding-tag" cyan><summary> 查看二次元背景 </summary>
-              <div class='content'>
-              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/home_bg.webp)" class="imgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/home_bg.webp)')"></a></div>
-              </div>
-            </details>
-
-
-<h3>2. 风景</h3>
-
-<details class="folding-tag" cyan><summary> 查看风景背景 </summary>
-              <div class='content'>
-              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/fj1.webp)" class="imgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/fj1.webp)')"></a></div>
-              </div>
-            </details>
-
-<h3>3. 萌宠</h3>
-
-<details class="folding-tag" cyan><summary> 查看萌宠背景 </summary>
-              <div class='content'>
-              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/mc1.webp)" class="imgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/mc1.webp)')"></a></div>
-              </div>
-            </details>
-
-<h3>4. 渐变色</h3>
-<details class="folding-tag" cyan><summary> 查看渐变色背景 </summary>
-              <div class='content'>
-              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to right, #544a7d, #ffd452)" onclick="changeBg('linear-gradient(to right, #544a7d, #ffd452)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to bottom, #7f7fd5, #86a8e7, #91eae4)" onclick="changeBg('linear-gradient(to bottom, #7f7fd5, #86a8e7, #91eae4)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to left, #654ea3, #eaafc8)" onclick="changeBg('linear-gradient(to left, #654ea3, #eaafc8)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #feac5e, #c779d0, #4bc0c8)" onclick="changeBg('linear-gradient(to top, #feac5e, #c779d0, #4bc0c8)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #d3959b, #bfe6ba)" onclick="changeBg('linear-gradient(to top, #d3959b, #bfe6ba)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #8360c3, #2ebf91)" onclick="changeBg('linear-gradient(to top, #8360c3, #2ebf91)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #108dc7, #ef8e38)" onclick="changeBg('linear-gradient(to top, #108dc7, #ef8e38)')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: linear-gradient(to top, #355c7d, #6c5b7b, #c06c84)" onclick="changeBg('linear-gradient(to top, #355c7d, #6c5b7b, #c06c84)')"></a></div>
-              </div>
-            </details>
-
-
-<h3>5. 纯色</h3>
-<details class="folding-tag" cyan><summary> 查看纯色背景 </summary>
-              <div class='content'>
-              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #ecb1b1" onclick="changeBg('#ecb1b1')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #d3ebac" onclick="changeBg('#d3ebac')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #ace9ce" onclick="changeBg('#ace9ce')"></a><a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #c1ebea" onclick="changeBg('#c1ebea')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #dee7f1" onclick="changeBg('#dee7f1')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #e9e3f2" onclick="changeBg('#e9e3f2')"></a> <a href="javascript:;" rel="noopener external nofollow" class="box" style="background: #f7eff5" onclick="changeBg('#f7eff5')"></a>  <input type="color" id="define_colors" href="javascript:;" rel="noopener external nofollow" class="box" autocomplete="on" value="${defineColor}" oninput="changeBgColor()"></input></div>
-              </div>
-            </details>
-
-
-
-<h3>6. 适配手机</h3>
-<details class="folding-tag" cyan><summary> 查看适配手机的背景 </summary>
-              <div class='content'>
-              <div class="bgbox"><a href="javascript:;" rel="noopener external nofollow" style="background-image:url(https://lskypro.acozycotage.net/Fomalhaut/img/mb4.webp)" class="pimgbox" onclick="changeBg('url(https://lskypro.acozycotage.net/Fomalhaut/img/mb4.webp)')"></a></div>
-              </div>
-            </details>
-
-
-<h3>7. 壁纸API</h3>
-<details class="folding-tag" cyan><summary> 查看壁纸API系列背景 </summary>
-              <div class='content'>
-              <div class="bgbox"><a id="bingDayBox" rel="noopener external nofollow" style="background-image: ${bingDayBg}" class="box apiBox" onclick="changeBg('${bingDayBg}')"></a><a id="bingHistoryBox" rel="noopener external nofollow" style="background-image: ${bingHistoryBg}" class="box apiBox" onclick="changeBg('${bingHistoryBg}')"></a><a id="EEEDogBox" rel="noopener external nofollow" style="background-image: ${EEEDog}" class="box apiBox" onclick="changeBg('${EEEDog}')"></a><a id="seovxBox" rel="noopener external nofollow" style="background-image: ${seovx}" class="box apiBox" onclick="changeBg('${seovx}')"></a><a id="picsumBox" rel="noopener external nofollow" style="background-image: ${picsum}" class="box apiBox" onclick="changeBg('${picsum}')"></a><a id="waiBizhiBox" rel="noopener external nofollow" style="background-image: ${waiBizhi}" class="box apiBox" onclick="changeBg('${waiBizhi}')"></a><a id="btstuBox" rel="noopener external nofollow" style="background-image: ${btstu}" class="box apiBox" onclick="changeBg('${btstu}')"></a><a id="unsplashBox" rel="noopener external nofollow" style="background-image: ${unsplash}" class="box apiBox" onclick="changeBg('${unsplash}')"></a></div>
-              </div>
-            </details>
-
-
-<h3>8. 自定义背景</h3>
-<details class="folding-tag" cyan><summary> 设置自定义背景 </summary>
-              <div class='content'>
-              <p><center><input type="text" id="pic-link" size="70%" maxlength="1000" placeholder="请输入有效的图片链接，如 https://source.fomal.cc/img/home_bg.webp"></center></p><p><center><button type="button" onclick="getPicture()" style="background:var(--theme-color);width:35%;padding: 5px 0px 7px 0px;border-radius:30px;color:white;line-height:2;">🌈切换背景🌈</button></center></p>
-              </div>
-            </details>
-
 <br>
 <center><div style="font-size:1.2em;color:var(--theme-color);font-weight:bold;">------ ( •̀ ω •́ )y 到底啦 ------</div></center>
 <br>
