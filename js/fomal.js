@@ -2290,17 +2290,10 @@ function setUniverse() {
 }
 
 // 雪花开关
-// 设置默认雪花状态为开启
-if (localStorage.getItem("snow") === null) {  // 改为检查 null 而不是 undefined
-  localStorage.setItem("snow", "block");
+if (localStorage.getItem("snow") == undefined) {
+  localStorage.setItem("snow", "none");
 }
-
-// 初始化雪花显示状态
-document.getElementById("snow").style.display = localStorage.getItem("snow");
-
-// 初始化复选框状态
-document.getElementById("snowSet").checked = localStorage.getItem("snow") === "block";
-
+document.getElementById("snow").style.display = "block";
 function setSnow() {
   if (document.getElementById("snowSet").checked) {
     document.getElementById("snow").style.display = "block";
@@ -2309,7 +2302,7 @@ function setSnow() {
     document.getElementById("snow").style.display = "none";
     localStorage.setItem("snow", "none");
   }
-}
+} 
 
 
 // 帧率监测开关
