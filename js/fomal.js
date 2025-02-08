@@ -2293,7 +2293,7 @@ function setUniverse() {
 if (localStorage.getItem("snow") == undefined) {
   localStorage.setItem("snow", "block");
 }
-document.getElementById("snow").style.display = "block";
+document.getElementById("snow").style.display = localStorage.getItem("snow");
 function setSnow() {
   if (document.getElementById("snowSet").checked) {
     document.getElementById("snow").style.display = "block";
@@ -2303,8 +2303,6 @@ function setSnow() {
     localStorage.setItem("snow", "none");
   }
 }
-
-
 
 
 // 帧率监测开关
@@ -2555,12 +2553,12 @@ function createWinbox() {
   } else {
     document.getElementById("lightSet").checked = false;
   }
-  setFontBorder();
   if (localStorage.getItem("snow") == "block") {
     document.getElementById("snowSet").checked = true;
   } else if (localStorage.getItem("snow") == "none") {
     document.getElementById("snowSet").checked = false;
   }
+  setFontBorder();
 }
 
 // 恢复默认背景
