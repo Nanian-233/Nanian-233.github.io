@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>aaa</title>
-      <link href="/posts/aaa.html"/>
-      <url>/posts/aaa.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> write up </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> CTF </tag>
-            
-            <tag> 区块链 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>robot</title>
       <link href="/posts/createrobot.html"/>
       <url>/posts/createrobot.html</url>
