@@ -2290,7 +2290,7 @@ function setUniverse() {
 }
 
 // 雪花开关
-if (localStorage.getItem("snow") == undefined) {
+if (localStorage.getItem("snow") == null) {
   localStorage.setItem("snow", "block");
 }
 document.getElementById("snow").style.display = localStorage.getItem("snow");
@@ -2519,9 +2519,6 @@ function createWinbox() {
         onclick="setColor('pink')" checked="checked"><input type="radio" id="black" name="colors" value=" "
         onclick="setColor('black')"><input type="radio" id="blackgray" name="colors" value=" "
         onclick="setColor('blackgray')"></div>
-<br>
-<center><div style="font-size:1.2em;color:var(--theme-color);font-weight:bold;">------ ( •̀ ω •́ )y 到底啦 ------</div></center>
-<br>
 
 </div>
 
