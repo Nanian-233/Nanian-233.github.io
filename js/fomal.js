@@ -2558,6 +2558,7 @@ function createWinbox() {
   } else if (localStorage.getItem("snow") == "none") {
     document.getElementById("snowSet").checked = false;
   }
+  
   setFontBorder();
 }
 
