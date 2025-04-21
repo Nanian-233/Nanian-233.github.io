@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://nanian-233.github.io/posts/XSS.html</loc>
+    <lastmod>2025-04-21</lastmod>
+  </url>
+  <url>
+    <loc>https://nanian-233.github.io/posts/xxe%5B6%5D.html</loc>
+    <lastmod>2025-04-14</lastmod>
+  </url>
+  <url>
     <loc>https://nanian-233.github.io/posts/NewstarCTF2023.html</loc>
     <lastmod>2025-03-26</lastmod>
   </url>
@@ -69,10 +77,6 @@
     <lastmod>2024-10-09</lastmod>
   </url>
   <url>
-    <loc>https://nanian-233.github.io/posts/xxe%5B6%5D.html</loc>
-    <lastmod>2024-09-24</lastmod>
-  </url>
-  <url>
     <loc>https://nanian-233.github.io/posts/sql.html</loc>
     <lastmod>2024-07-26</lastmod>
   </url>
@@ -98,10 +102,6 @@
   </url>
   <url>
     <loc>https://nanian-233.github.io/posts/LitCTF2023%5B1%5D.html</loc>
-    <lastmod>2024-06-28</lastmod>
-  </url>
-  <url>
-    <loc>https://nanian-233.github.io/posts/XSS.html</loc>
     <lastmod>2024-06-28</lastmod>
   </url>
   <url>
