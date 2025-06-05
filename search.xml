@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>CSRF</title>
+      <link href="/posts/csrf.html"/>
+      <url>/posts/csrf.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是-CSRF">什么是 CSRF</h2><p>CSRF（Cross-Site Request Forgery，跨站请求伪造）</p><p>攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。利用受害者在被攻击网站已经获取的注册凭证，绕过后台的用户验证，达到冒充用户对被攻击的网站执行某项操作的目的。</p><h2 id="关键点">关键点</h2><ul><li>利用了用户的 <strong>身份认证状态</strong>（如 Cookie）。</li><li>攻击者诱导用户点击链接或加载页面/图片，即可悄无声息发起请求。</li><li>如果服务器没有做好防护，攻击请求将被认为是合法用户操作。</li></ul><h2 id="原因">原因</h2><ul><li><strong>浏览器默认会携带 Cookie</strong>：即使页面是第三方站点。</li><li>用户通常 <strong>不会频繁退出登录</strong>。</li><li>请求没有必要的验证机制（如 CSRF Token）。</li></ul><hr><h2 id="CSRF-的攻击原理">CSRF 的攻击原理</h2><p>设想一个网站 <code>bank.com</code> 有如下请求：</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST /transfer</span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>bank.com</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>session=abc123</span><br><span class="line"><span class="attribute">Body</span><span class="punctuation">: </span>to=attacker&amp;amount=1000</span><br></pre></td></tr></table></figure><p>攻击者构造一个页面如下：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://bank.com/transfer?to=attacker&amp;amount=1000&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure><p>用户在登录 <code>bank.com</code> 后，没有退出登录，访问了攻击者网页，浏览器自动携带 <code>bank.com</code> 的 Cookie，服务器认为是合法请求，从而转账成功。</p><hr><h2 id="CSRF-的典型攻击方式">CSRF 的典型攻击方式</h2><ol><li><p><strong>GET 请求注入</strong>：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://target.com/delete?id=123&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li><li><p><strong>表单自动提交</strong>（POST）：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;http://target.com/transfer&quot;</span> <span class="attr">method</span>=<span class="string">&quot;POST&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;to&quot;</span> <span class="attr">value</span>=<span class="string">&quot;attacker&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;amount&quot;</span> <span class="attr">value</span>=<span class="string">&quot;1000&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="variable language_">document</span>.<span class="property">forms</span>[<span class="number">0</span>].<span class="title function_">submit</span>();</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></li></ol><hr><h2 id="CSRF-与-XSS-的区别">CSRF 与 XSS 的区别</h2><table><thead><tr><th>方面</th><th>CSRF</th><th>XSS</th></tr></thead><tbody><tr><td>攻击者</td><td>第三方网站</td><td>插入恶意脚本到目标站点</td></tr><tr><td>原理</td><td>利用用户身份</td><td>利用浏览器执行恶意 JS</td></tr><tr><td>影响</td><td>未授权操作</td><td>数据泄露、身份盗用等</td></tr><tr><td>防御点</td><td>验证请求来源</td><td>过滤/转义用户输入</td></tr></tbody></table><hr><h2 id="如何防御-CSRF？">如何防御 CSRF？</h2><ol><li><p><strong>CSRF Token（推荐）</strong></p><ul><li><p>每次表单/请求附加一个服务器生成的随机令牌。</p></li><li><p>后端验证该 Token 是否匹配。</p></li><li><p>示例：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;hidden&quot;</span> <span class="attr">name</span>=<span class="string">&quot;csrf_token&quot;</span> <span class="attr">value</span>=<span class="string">&quot;random123&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li></ul></li><li><p><strong>SameSite Cookie 属性</strong></p><ul><li><p>设置 Cookie 的 SameSite 为 <code>Strict</code> 或 <code>Lax</code>，防止第三方网站自动携带 Cookie。</p></li><li><p>示例：</p><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Set-Cookie</span><span class="punctuation">: </span>sessionid=xyz; SameSite=Strict</span><br></pre></td></tr></table></figure></li></ul></li><li><p><strong>Referer / Origin 检查</strong></p><ul><li>检查请求头中 <code>Referer</code> 或 <code>Origin</code> 是否来自合法域名。</li><li>缺点：Referer 可能被禁用，兼容性差。</li></ul></li><li><p><strong>双重 Cookie 验证（Double Submit Cookie）</strong></p><ul><li>在 Cookie 和请求体中分别携带同一个 Token，服务端验证二者一致。</li></ul></li><li><p><strong>用户行为验证</strong></p><ul><li>添加验证码（CAPTCHA）、点击确认弹窗等方式，增加用户操作成本。</li></ul></li></ol><h2 id="参考">参考</h2><p><a href="https://tech.meituan.com/2018/10/11/fe-security-csrf.html">前端安全系列（二）：如何防止CSRF攻击？ - 美团技术团队</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CTF </tag>
+            
+            <tag> WEB </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SSRF</title>
       <link href="/posts/ssrf.html"/>
       <url>/posts/ssrf.html</url>
