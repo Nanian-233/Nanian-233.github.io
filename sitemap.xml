@@ -2,7 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://nanian-233.github.io/posts/dvwa.html</loc>
+    <loc>https://nanian-233.github.io/posts/dvwa1.html</loc>
+    
+    <lastmod>2025-07-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nanian-233.github.io/posts/upload.html</loc>
     
     <lastmod>2025-07-15</lastmod>
     
@@ -32,15 +41,6 @@
     <loc>https://nanian-233.github.io/posts/xxe[6].html</loc>
     
     <lastmod>2025-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://nanian-233.github.io/posts/upload.html</loc>
-    
-    <lastmod>2025-06-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
